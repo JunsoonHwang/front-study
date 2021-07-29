@@ -73,7 +73,7 @@
 // 0 ~ 9 사이의 난수를 출력함
 
 
-// 3. 배열
+// 3. Array(배열)
 
 
 // const number = [1, 2, 3, 4]
@@ -128,8 +128,8 @@
 // console.log(a)
 // forEach = 반환되는 값이 없음 = undefined
 
-const number = [1, 2, 3, 4]
-const fruits = ['Apple', 'Banana', 'Cherry']
+// const number = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
 
 // const b = fruits.map(function (fruit, i) {
 //   return `${fruit}-${i}`
@@ -151,15 +151,162 @@ const fruits = ['Apple', 'Banana', 'Cherry']
 
 // 위 함수 화살표 함수로 변경
 
-const a = fruits.forEach((fruit, i) => {
-  // 인수가 하나면 ()도 생략가능
-  console.log(`${fruit}-${i}`)
-})
+// const a = fruits.forEach((fruit, i) => {
+//   // 인수가 하나면 ()도 생략가능
+//   console.log(`${fruit}-${i}`)
+// })
 
-const b = fruits.map((fruit, i) => ({
-  id: i,
-  name: fruit
-}))
-// {}데이터 화살표함수로 사용하려면 ({}) 이럴게 
-// 소괄호로 감싸줘야함
-  console.log(b)
+// const b = fruits.map((fruit, i) => ({
+//   id: i,
+//   name: fruit
+// }))
+// // {}데이터 화살표함수로 사용하려면 ({}) 이럴게 
+// // 소괄호로 감싸줘야함
+//   console.log(b)
+
+
+// const numbers = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
+
+// const a = numbers.map(number => number < 3)
+
+// console.log(a)
+
+// const b = numbers.filter(number => number < 3)
+//   // 인자로 사용한 콜백함수의 조건이 true인 데이터만
+//   // 반환함
+
+// console.log(b)
+
+
+// const numbers = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
+
+// const a = fruits.find(fruit => /^B/.test(fruit))
+// // find /^B/.test = B로 시작하는 아이템을 찾아서 반환
+// console.log(a)
+
+// const b = fruits.findIndex(fruit => /^B/.test(fruit))
+// // findIndex /^B/.test = B로 시작하는 아이템의 인덱스값
+// // 반환
+// console.log(b)
+
+
+// const numbers = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
+
+// const a = numbers.includes(3)
+// // includes = 인수가 배열안에 들어있는지 없는지 확인
+// console.log(a)
+
+// const b = numbers.includes('junear')
+// console.log(b)
+
+
+// const numbers = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
+
+// numbers.push(5)
+// // 배열의 마지막에 입력한 인수 추가
+// console.log(numbers)
+
+// numbers.unshift(0)
+// // 배열의 맨 앞에 입력한 인수 추가
+// console.log(numbers)
+
+
+// const numbers = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
+
+// numbers.reverse()
+// fruits.reverse()
+// // 해당 배열 순서를 뒤집음
+
+// console.log(numbers)
+// console.log(fruits)
+
+
+// const numbers = [1, 2, 3, 4]
+// const fruits = ['Apple', 'Banana', 'Cherry']
+
+// numbers.splice(2, 1)
+// // splice = (인덱스 값 기준, 몇개를 지우고, 
+// // 새로운 것을 추가한다)
+// console.log(numbers)
+
+// fruits.splice(2, 0, 'Orange')
+// console.log(fruits)
+
+
+// 4. Object(객체)
+
+
+// const userAge = {
+//   name: 'Junear',
+//   age: 29
+// }
+// const userEmail = {
+//   name: 'Junear',
+//   email: 'wnstns13@naver.com'
+// }
+
+// const target = Object.assign({}, userAge)
+// // Object는 정적데이터(static)임으로 
+// // 반드시 Object.assign(타겟, 복사할 소스)
+// console.log(target)
+// console.log(userAge)
+// console.log(target === userAge)
+
+// const a = { k: 123 }
+// const b = { k: 123 }
+// console.log(a === b)
+// 내용만 같다고 같은게 아니라 데이터가 할당되는 방향이
+// 같아야 같은 것
+
+
+// const user = {
+//   name: 'Junear',
+//   age: 29,
+//   email: 'wnstns13@naver.com'
+//   // key: value
+// }
+
+// const keys = Object.keys(user)
+// // keys = 인수로 받은 데이터의 key를 배열 데이터로 반환
+// console.log(keys)
+
+// console.log(user['email'])
+// // 객체 데이터는 ['이름'] 인덱싱을 사용하여 원하는 값을
+// // 확인 할 수 있음
+
+// const values = keys.map(key => user[key])
+// // keys는 배열 데이터임으로 map을 통해 콜백함수를
+// // 반복적으로 실행 할 수 있고 콜백 함수의 리턴 값으로
+// // user[key]를 사용해 위에 예시처럼 인덱싱을 통해
+// // 객체데이터의 값을 불러올수 있음
+// console.log(values)
+
+
+// 5. 구조 분해 할당(비구조화 할당)
+
+const user = {
+  name: 'Junear',
+  age: 29,
+  email: 'wnstns13@naver.com'
+}
+
+const { name, age, email, address } = user
+// user 라는 객체 데이터에서 구조 분해 할당을 통해 
+// 내가 원하는 속성들만 꺼내서 사용할 수 있는 개념
+
+console.log(`사용자의 이름은 ${name} 입니다.`)
+console.log(`${name}의 나이는 ${age}세 입니다.`)
+console.log(`${name}의 이메일 주소는 ${email}입니다.`)
+console.log(address)
+// 데이터 보관처리를 통해 데이터를 사용
+
+const fruits = ['Apple', 'Banana', 'Cherry']
+const [a, b, c, d] = fruits
+// 객체는 객체, 배열은 배열로 할당해야함
+// 4번째 아이템은 없기 때문에 d = undefined
+console.log(a, b, c, d)
