@@ -289,24 +289,116 @@
 
 // 5. 구조 분해 할당(비구조화 할당)
 
-const user = {
-  name: 'Junear',
-  age: 29,
-  email: 'wnstns13@naver.com'
-}
+// const user = {
+//   name: 'Junear',
+//   age: 29,
+//   email: 'wnstns13@naver.com'
+// }
 
-const { name, age, email, address } = user
-// user 라는 객체 데이터에서 구조 분해 할당을 통해 
-// 내가 원하는 속성들만 꺼내서 사용할 수 있는 개념
+// const { name, age, email, address } = user
+// // user 라는 객체 데이터에서 구조 분해 할당을 통해 
+// // 내가 원하는 속성들만 꺼내서 사용할 수 있는 개념
 
-console.log(`사용자의 이름은 ${name} 입니다.`)
-console.log(`${name}의 나이는 ${age}세 입니다.`)
-console.log(`${name}의 이메일 주소는 ${email}입니다.`)
-console.log(address)
-// 데이터 보관처리를 통해 데이터를 사용
+// console.log(`사용자의 이름은 ${name} 입니다.`)
+// console.log(`${name}의 나이는 ${age}세 입니다.`)
+// console.log(`${name}의 이메일 주소는 ${email}입니다.`)
+// console.log(address)
+// // 데이터 보관처리를 통해 데이터를 사용
 
-const fruits = ['Apple', 'Banana', 'Cherry']
-const [a, b, c, d] = fruits
-// 객체는 객체, 배열은 배열로 할당해야함
-// 4번째 아이템은 없기 때문에 d = undefined
-console.log(a, b, c, d)
+// const fruits = ['Apple', 'Banana', 'Cherry']
+// const [a, b, c, d] = fruits
+// // 객체는 객체, 배열은 배열로 할당해야함
+// // 4번째 아이템은 없기 때문에 d = undefined
+// console.log(a, b, c, d)
+
+
+// 6. 전개 연산자
+
+
+// const friuts = ['Apple', 'Banana', 'Cherry']
+// console.log(friuts)
+// console.log(...friuts)
+// // 배열 데이터를 쉼표로 구분하는 하나의 아이템으로 
+// // 전개해줌
+
+// function toOb(a, b, c) {
+//   return {
+//     a,
+//     // a(속성): a(매개변수)가 같으면 a 하나로 축약가능
+//     // a: a 는 a와 같다
+//     b: b,
+//     c: c
+//   }
+// }
+// console.log(toOb(...friuts))
+// 만약 전개연산자를 사용하지 않고 같은 값을 내려면
+// console.log(toOb(friuts[0], friuts[1], friuts[2]))
+// 쉼표로 하나씩 인덱싱 해주어야함
+// 화살표 함수로 변경시
+// const toObject = (a, b, c) => ({a, b, c})
+// console.log(toObject(...friuts))
+
+
+// 7. 데이터 불변성
+
+// 원시 데이터: String, Number, Boolean, undefined, Null
+// -----------------------------------------------
+// | 1.    1     | 2.    4     | 3.   7     | 4.
+// -----------------------------------------------
+
+// let a = 1
+// let b = 4
+// // a = 1번 메모리에 데이터를 저장하고 바라봄
+// // b = 2번 메모리에 데이터를 저장하고 바라봄
+// console.log(a, b, a === b)
+// // 값이 달라서 false인 것도 맞는데
+// // 바라보는 메모리 주소가 다르기 때문
+// b = a
+// console.log(a, b, a === b)
+// // 2번 메모리의 값이 1로 바뀐게 아니라
+// // b가 바라보는 방향이 a로 바뀐 것
+// a = 7
+// console.log(a, b, a === b)
+// // 이것도 역시 1번 메모리 값이 7로 바뀐게 아니라
+// // 1번 메모리 값은 그대로 있고 
+// // 3번 메모리에 7이라는 값이 할당되고
+// // 3번 메모리를 바라봄
+// let c = 1
+// console.log(b, c, b === c)
+// 이 경우도 4번 메모리에 1이 지정되는 것이 아니라
+// 1이라는 데이터를 가지고 있는 1번 메모리를 찾아서
+// 바라보는 방식
+
+// 원시 데이터의 경우 데이터 불변성때문에 간단하게 
+// 생긴게 다르면 다른 데이터라고 봐도 무방
+
+
+// 참조형 데이터: Object, Array, Function
+// -----------------------------------------------
+// | 1. {      } | 2. {      } | 3. {      } | 4.
+// -----------------------------------------------
+
+let a = { k: 1 }
+let b = { k: 1 }
+
+console.log(a, b, a === b)
+// 원시 데이터와 달리 값이 같아도 바라보는 메모리가
+// 다르게 때문에 flase
+a.k = 7
+// 원시 데이터와 달리 3번 메모리에 7을 할당 하는게 아니라
+// 1번 메모리의 값을 k: 7로 변경함
+b = a
+// 2번 메모리에서 1번 메모리로 바라보는 방향이 바뀜
+console.log(a, b, a === b)
+a.k = 2
+console.log(a, b, a === b)
+// 이 부분이 조심해야 할 부분인데
+// a의 값만 k: 2로 바꾸려 했는데
+// 결과를 보면 같은 주소값을 바라보고 있던 b의 값도
+// 의도치 않게 변해버린다
+let c = b
+console.log(a, b, c, a === c)
+// c라는 변수에 b를 할당함으로 c도 b와 같은 메모리를
+// 바라보게됌
+a.k = 9
+console.log(a, b, c, a === c)
