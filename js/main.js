@@ -378,27 +378,80 @@
 // | 1. {      } | 2. {      } | 3. {      } | 4.
 // -----------------------------------------------
 
-let a = { k: 1 }
-let b = { k: 1 }
+// let a = { k: 1 }
+// let b = { k: 1 }
 
-console.log(a, b, a === b)
-// 원시 데이터와 달리 값이 같아도 바라보는 메모리가
-// 다르게 때문에 flase
-a.k = 7
-// 원시 데이터와 달리 3번 메모리에 7을 할당 하는게 아니라
-// 1번 메모리의 값을 k: 7로 변경함
-b = a
-// 2번 메모리에서 1번 메모리로 바라보는 방향이 바뀜
-console.log(a, b, a === b)
-a.k = 2
-console.log(a, b, a === b)
-// 이 부분이 조심해야 할 부분인데
-// a의 값만 k: 2로 바꾸려 했는데
-// 결과를 보면 같은 주소값을 바라보고 있던 b의 값도
-// 의도치 않게 변해버린다
-let c = b
-console.log(a, b, c, a === c)
-// c라는 변수에 b를 할당함으로 c도 b와 같은 메모리를
-// 바라보게됌
-a.k = 9
-console.log(a, b, c, a === c)
+// console.log(a, b, a === b)
+// // 원시 데이터와 달리 값이 같아도 바라보는 메모리가
+// // 다르게 때문에 flase
+// a.k = 7
+// // 원시 데이터와 달리 3번 메모리에 7을 할당 하는게 아니라
+// // 1번 메모리의 값을 k: 7로 변경함
+// b = a
+// // 2번 메모리에서 1번 메모리로 바라보는 방향이 바뀜
+// console.log(a, b, a === b)
+// a.k = 2
+// console.log(a, b, a === b)
+// // 이 부분이 조심해야 할 부분인데
+// // a의 값만 k: 2로 바꾸려 했는데
+// // 결과를 보면 같은 주소값을 바라보고 있던 b의 값도
+// // 의도치 않게 변해버린다
+// let c = b
+// console.log(a, b, c, a === c)
+// // c라는 변수에 b를 할당함으로 c도 b와 같은 메모리를
+// // 바라보게됌
+// a.k = 9
+// console.log(a, b, c, a === c)
+
+
+// 8. 얕은 복사와 깊은 복사
+
+// const user = {
+//   name: 'Junear',
+//   age: 29,
+//   email: ['wnstns13@naver.com']
+// }
+
+// const copyUser = Object.assign({}, user)
+// // 얕은 복사: user의 데이터를 Object.assign을 통해 
+// // 새로운 객체 데이터에 복사함
+// // const copyUser = {...user} 이렇게 해도 복사됌
+// console.log(user === copyUser)
+
+// user.age = 22
+// console.log(user)
+// console.log(copyUser)
+
+// user.email.push('wnstns13@gmail.com')
+// console.log(user.email === copyUser.email)
+// console.log('user', user)
+// console.log('copyUser', copyUser)
+// 표면만 복사, 속의 내용은 복사되지 않음
+// email 부분은 여전히 true로 나옴
+
+
+import _ from 'lodash'
+// 설치된 'lodash'를 가지고와서 _라는 명령으로
+// lodash 기능들 사용
+
+const user = {
+  name: 'Junear',
+  age: 29,
+  email: ['wnstns13@naver.com']
+}
+
+const copyUser = _.cloneDeep(user)
+// _.cloneDeep() = 깊은 복사
+// 참조형 데이터 속에 또 다른 참조형 데이터가 있다면
+// 깊은 복사를 해야 내부에 있는 참조형 데이터에
+// 영향을 주지 않음
+console.log(user === copyUser)
+
+user.age = 22
+console.log(user)
+console.log(copyUser)
+
+user.email.push('wnstns13@gmail.com')
+console.log(user.email === copyUser.email)
+console.log('user', user)
+console.log('copyUser', copyUser)
